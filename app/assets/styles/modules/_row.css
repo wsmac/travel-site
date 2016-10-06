@@ -5,23 +5,33 @@
   &--gutters {
     margin-right: -65px;
   }
+
   &--gutters > div {
     padding-right: 65px;
   }
 
-  &--gutters--large {
+  &--gutters-small {
+    margin-right: 145px;
+  }
+
+  &--gutters-small > div {
+    padding-right: 45px;
+  }
+
+  &--gutters-large {
     margin-right: -100px;
   }
 
-  &--gutters--large > div {
+  &--gutters-large > div {
     padding-right: 100px;
   }
 
+  &--top-padding {
+    padding-top: 80px;
+  }
 
   &__bot-margin-until-medium {
       margin-bottom: 1rem;
-
-
   }
    @mixin atMedium {
      &__bot-margin-until-medium {
@@ -50,7 +60,20 @@
        float: left;
        width: 63%;
      }
+  }
 
+  /* begin equal height rules */
+  &--equal-height-at-medium {
+
+    @mixin atMedium {
+      display: flex;
+    }
+
+    & > div {
+      float: none;
+      display: flex;
+    }
 
   }
+
 }
