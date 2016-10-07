@@ -1,0 +1,10 @@
+.site-header {
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  background-color: rgba(47, 85, 114, .3);
+
+  &__button-container {
+    float: right;
+  }
+}
