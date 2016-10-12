@@ -6,7 +6,8 @@ var gulp = require('gulp'),
     nested = require('postcss-nested'),
     cssImport = require('postcss-import'),
     browserSync = require('browser-sync').create(),
-    mixins = require('postcss-mixins');
+    mixins = require('postcss-mixins'),
+    webpack = require('webpack');
 
 gulp.task('styles', function() {
   return gulp.src('./app/assets/styles/styles.css')
@@ -35,4 +36,24 @@ gulp.task('watch', function() {
   watch('./app/assets/styles/**/*.css', function() {
      gulp.start('styles');
   });
+
+  watch('./app/assets/scripts/**/*.js', function() {
+     gulp.start('scriptsRefresh');
+  });
+});
+
+gulp.task('scripts', function(callback) {
+  console.log("Running scripts task");
+  webpack(require('./webpack.config.js'), function(err, stats) {
+    if (err) {
+      console.log(err.toString());
+    }
+    console.log(stats.toString());
+    callback();
+  });
+});
+
+gulp.task('scriptsRefresh', ['scripts'], function() {
+  console.log("Running scriptsRefresh");
+  browserSync.reload();
 });
